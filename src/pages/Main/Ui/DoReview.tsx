@@ -5,7 +5,7 @@ import Select from "../../../shades/UI/Select";
 import Button from "../../../shades/UI/Button";
 
 const Array1 = [
-    { text: "О слоне", value: 0 },
+    { text: "О салоне", value: 0 },
     { text: "О Анне Петровой", value: 1 },
     { text: "О Марии Ивановой", value: 2 },
     { text: "о Елене Смирновой", value: 3 },

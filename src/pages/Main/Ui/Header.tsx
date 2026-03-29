@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../../../utils/supabase'; // Проверь путь
 import Button from "../../../shades/UI/Button";
+import Button2 from '../../../shades/UI/Button2';
 
 interface IMainPageProps {
     MainPageActionBack?: () => void;
@@ -30,7 +31,7 @@ function HeaderPage({
         if (user) {
             // Запрос к твоей новой таблице Profiles
             const { data, error } = await supabase
-                .from('Profiles')
+                .from('profiles')
                 .select('full_name')
                 .eq('id', user.id)
                 .single();
@@ -83,13 +84,13 @@ function HeaderPage({
                 {userName && (
                     <>
                         {/* Здесь теперь отображается имя клиента */}
-                        <span style={{ fontSize: '12px', color: '#333', fontWeight: 'bold' }}>
+                        <span style={{ fontSize: '18px', color: '#333', fontWeight: 'bold' }}>
                             {userName}
                         </span>
-                        <Button clickAction={handleLogout}>Выйти</Button>
+                        <Button2 clickAction={handleLogout}>Выйти</Button2>
                     </>
                 )}
-                <Button clickAction={MainPageActionProfil}>👤</Button>
+                <Button2 clickAction={MainPageActionProfil}>👤</Button2>
             </div>
         </div>
     );

@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import style from "./../styles/Button.module.css";
 
 interface IButtonProps{
     children?: ReactNode;
@@ -7,7 +8,7 @@ interface IButtonProps{
 
 function Button ({children,clickAction = () => {} } : IButtonProps){
     return(
-    <button  onClick={clickAction}>
+    <button  onClick={clickAction} className={style.button}>
         {children}
     </button>)
 }

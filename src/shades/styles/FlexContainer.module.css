@@ -1,0 +1,11 @@
+.backgraund {
+    /* Основной нежно-розовый фон с легким переливом */
+    background: linear-gradient(135deg, #fff5f5 0%, #fde2e4 50%, #fff5f5 100%);
+    
+    /* Дополнительно можно добавить легкое радиальное свечение по центру */
+    background: radial-gradient(circle at center, #ffeff0 0%, #fde2e4 100%);
+}
+
+.pozition {
+    text-align: right;
+}

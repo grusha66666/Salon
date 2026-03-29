@@ -28,7 +28,7 @@ function SingUpPage({ SingUpPageActionDown }: any) {
             // 2. Записываем имя в таблицу Profiles
             if (data.user) {
                 const { error: profileError } = await supabase
-                    .from('Profiles')
+                    .from('profiles')
                     .insert([{ 
                         id: data.user.id, 
                         email: email, 
@@ -50,7 +50,7 @@ function SingUpPage({ SingUpPageActionDown }: any) {
     return (
         <div>
             <Text>Регистрация</Text>
-            <List>
+            <div>
                 <p>Ваше Имя</p>
                 <Input placholder="Михаил" value={fullName} changeAction={(v) => setFullName(v)} />
                 
@@ -63,7 +63,7 @@ function SingUpPage({ SingUpPageActionDown }: any) {
                 {error && <p style={{ color: 'red' }}>{error}</p>}
                 <Button clickAction={handleSignUp}>{loading ? 'Загрузка...' : 'Зарегистрироваться'}</Button>
                 <Button clickAction={SingUpPageActionDown}>Уже есть аккаунт? Войдите</Button>
-            </List>
+            </div>
         </div>
     );
 }

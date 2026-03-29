@@ -53,7 +53,7 @@ function SingInPage({ SingInPageActionUp, SingInPageActionDown }: ISingUpProps) 
     return (
         <div>
             <Text>Вход в аккаунт</Text>
-            <List>
+            <div>
                 <p>Введите Email</p>
                 <Input 
                     placholder="example@mail.com" 
@@ -78,7 +78,7 @@ function SingInPage({ SingInPageActionUp, SingInPageActionDown }: ISingUpProps) 
                 <Button clickAction={SingInPageActionDown}>
                     Нет аккаунта? Зарегистрируйтесь
                 </Button>
-            </List>
+            </div>
         </div>
     );
 }
