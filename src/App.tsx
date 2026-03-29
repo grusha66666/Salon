@@ -12,8 +12,8 @@ import SingUpPage from "./pages/second/Ui/SingUp";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(0);
-  const [currentPassword,setCurrentPassword] = useState("gg")
   
+   
   const pages: ReactNode[] = [
     <MainPage/>,
     <MastersMainPage/>,

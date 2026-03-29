@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import css from "./../styles/Text.module.css";
 
 interface ITextProps {
   children?: ReactNode;
@@ -9,8 +8,8 @@ interface ITextProps {
 
 function Text({children, size = 14} : ITextProps){
     return(
-
-        <p style={{fontSize: size + "pt"}} className={css.text}>
+        <p 
+            style={{fontSize: size + "pt"}}>
             {children}
         </p>
     )

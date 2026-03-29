@@ -1,6 +1,5 @@
 
 import { ChangeEvent } from "react";
-import css from "./../styles/Select.module.css"
 
 
 interface IOptions {
@@ -22,7 +21,6 @@ function Select({ Arroptios = [{ text: "", value: 0 }], changeAction = () => { }
     }
     return (
         <select 
-        className={css.select}
             onChange={handelChange}>
             {Arroptios.map((option) => <option value={option.value}>{option.text}</option>)}
         </select>
