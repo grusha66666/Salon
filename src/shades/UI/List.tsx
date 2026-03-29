@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import css from "./../styles/List.module.css"
 interface IListProps {
   children?: ReactNode;
   type?: "ordered" | "unordered";
@@ -15,7 +14,7 @@ function List({
   const defoltStyle = type === "ordered" ? "decimal" : "disc"
   const finalStyle = listStyle || defoltStyle
   return (
-    <Teg className={css.list} style={{ listStyleType: finalStyle }}>
+    <Teg style={{ listStyleType: finalStyle }}>
       {React.Children.map(children, (child, index) => {
         return <li key={index}>{child}</li>;
       })}
