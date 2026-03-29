@@ -1,0 +1,14 @@
+.reviews {
+    display: grid;
+    /* Создал 3 колонки равной ширины */
+    grid-template-columns: repeat(3, 1fr); 
+    /* Расстояние между фото */
+    gap: 20px; 
+    /* Чтобы галерея занимала всю доступную ширину */
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto; /* Центрирую сетку на странице */
+    padding: 20px;
+  
+}
+

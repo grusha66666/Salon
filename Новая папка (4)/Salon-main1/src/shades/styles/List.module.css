@@ -1,0 +1,44 @@
+/* Контейнер для всей сетки (у тебя это .reviews в Reviews.module.css) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Стили самой карточки (тег ul или ol, который возвращает List.tsx) */
+.card {
+  background: #d17a81;
+  border-radius: 15px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 180px;
+  transition: transform 0.2s ease;
+  text-align: left;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Стили для элементов внутри карточки (Text) */
+.card li:first-child {
+  color: #d17a81; /* Звезды/Рейтинг */
+  font-weight: bold;
+}
+
+.card li:nth-child(2) {
+  color: #4a4a4a; /* Текст отзыва */
+  flex-grow: 1;
+}
+
+.card li:last-child {
+  color: #8e8e8e; /* Имя автора */
+  font-size: 0.9rem;
+}
