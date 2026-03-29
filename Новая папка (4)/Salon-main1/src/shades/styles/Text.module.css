@@ -1,0 +1,32 @@
+.text {
+    /* Стили для обычного текст*/
+    color: #636363;
+    font-family: 'Inter', sans-serif; 
+    margin: 10px 0;
+    line-height: 1.4;
+    text-align: center;
+    font-weight: 400;
+}
+.title {
+    /* Стили для главного заголовка */
+    color: #f85c65; /* Насыщенный розово-красный цвет */
+    font-family: 'Inter', sans-serif;
+    font-weight: 900; /* Очень жирный шрифт */
+    text-align: center;
+    margin-bottom: 20px;
+    
+    /*Эффект многослойной тени*/
+    text-shadow: 
+        1px 1px 0px rgba(0, 0, 0, 0.05),
+        2px 2px 4px rgba(0, 0, 0, 0.1);
+        
+    /*Буквы чуть ближе друг к другу*/
+    letter-spacing: -0.02em;
+}
+
+.text2 {
+    text-align: center;
+    color: #f85c65;
+    
+}
+
