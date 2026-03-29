@@ -1,28 +1,54 @@
+import { useEffect, useState } from "react";
+import { supabase } from "../../../utils/supabase";
 import Text from "../../../shades/UI/Text";
 import Text2 from "../../../shades/UI/Text2";
-import Button from "../../../shades/UI/Button";
-import List from "../../../shades/UI/List";
 import Button2 from "../../../shades/UI/Button2";
-import css from "../../../shades/styles/FlexContainer.module.css";
-import styles from "../../../shades/styles/Reviews.module.css"
+import List from "../../../shades/UI/List";
+import styles from "../../../shades/styles/Reviews.module.css";
 
-interface IReviewsProps{
-    ReviewsPageActionBack?: () => void;
+interface IReviewsProps {
+    onAddReviewClick: () => void;
 }
-function ReviewsPage ({ReviewsPageActionBack}:IReviewsProps) {
-    return(
+
+function ReviewsPage({onAddReviewClick }: IReviewsProps) {
+    const [reviews, setReviews] = useState<any[]>([]);
+
+    useEffect(() => {
+        const fetchReviews = async () => {
+            const { data, error } = await supabase
+                .from('reviews')
+                .select(`
+                    id,
+                    rating,
+                    comment,
+                    created_at,
+                    profiles (full_name)
+                `)
+                .order('created_at', { ascending: false });
+
+            if (!error) setReviews(data || []);
+        };
+        fetchReviews();
+    }, []);
+
+    return (
         <div>
             <Text2 size={25}>Отзывы наших клиентов</Text2>
-            <li className={css.pozition}><Button2 clickAction={ReviewsPageActionBack}>Оставить отзыв</Button2></li>
+            <li className={styles.pozition}>
+                <Button2 clickAction={onAddReviewClick}>Оставить отзыв</Button2>
+            </li>
+            
             <div className={styles.reviews}>
-                <List listStyle="none"> <Text>5/5</Text> <Text>Прекрасный салон все оке и кайф</Text> <Text>Ирина В.</Text> </List>
-                <List listStyle="none"> <Text>5/5</Text> <Text>Все было замечательно</Text> <Text>Анна С.</Text> </List>
-                <List listStyle="none"> <Text>5/5</Text> <Text>Мастер Мария просто огонь</Text> <Text>Шамиль Г.</Text> </List>
-                <List listStyle="none"> <Text>5/5</Text> <Text>Все четенько, покрасился</Text> <Text>Антон П.</Text> </List>
-                <List listStyle="none"> <Text>1/5</Text> <Text>Мне не нрав</Text> <Text>Галина П.</Text> </List>
-                <List listStyle="none"> <Text>5/5</Text> <Text>Потресаюший сервис И профессеанальнзм</Text> <Text>Виктория Р.</Text> </List>
+                {reviews.map((rev) => (
+                    <List listStyle="none" key={rev.id}>
+                        <Text>{rev.rating}/5</Text>
+                        <Text>{rev.comment}</Text>
+                        <Text>{rev.profiles?.full_name || "Аноним"}</Text>
+                    </List>
+                ))}
             </div>
         </div>
-    )
+    );
 }
-export default ReviewsPage
+
+export default ReviewsPage;

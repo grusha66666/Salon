@@ -5,8 +5,8 @@ import css from "./../styles/Reviews.module.css"
 
 
 interface IOptions {
-    text: string;
-    value: number;
+  text: string;
+  value: string;
 }
 
 interface ISelectProps {
@@ -16,7 +16,7 @@ interface ISelectProps {
 
 }
 
-function Select({ Arroptios = [{ text: "", value: 0 }], changeAction = () => { } }: ISelectProps) {
+function Select({ Arroptios = [{ text: "", value: "" }], changeAction = () => { } }: ISelectProps) {
 
     function handelChange(event: ChangeEvent<HTMLSelectElement>) {
         changeAction(event.target.value)

@@ -1,19 +1,56 @@
+import { useEffect, useState } from "react";
+import { supabase } from "../../../utils/supabase";
 import Text from "../../../shades/UI/Text";
 import Photo from "../../../shades/UI/Photo";
 import List from "../../../shades/UI/List";
 
-
-function GaleriPage () {
-    return(
-        <div>
-            <Text>Галерея товара</Text>
-            <List><Photo src="/images/Plug.webp"/><Text>Шампунь профессиональный</Text><Text>1500 Р</Text></List>
-            <List><Photo src="/images/Plug.webp"/><Text>Набор для ухода</Text><Text>3500 Р</Text></List>
-            <List><Photo src="/images/Plug.webp"/><Text>Масло для волос</Text><Text>2200 Р</Text></List>
-            <List><Photo src="/images/Plug.webp"/><Text>Косметика для макияжа</Text><Text>4500 Р</Text></List>
-            <List><Photo src="/images/Plug.webp"/><Text>Лак для ногтей</Text><Text>800 Р</Text></List>
-            <List><Photo src="/images/Plug.webp"/><Text>Средства для ногтей</Text><Text>1800 Р</Text></List>
-        </div>
-    )
+interface Product {
+    id: string;
+    name: string;
+    price: number;
+    photo_url: string;
 }
-export default GaleriPage
+
+function GaleriPage() {
+    const [products, setProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchProducts() {
+            const { data, error } = await supabase
+                .from('products')
+                .select('*')
+                .order('created_at', { ascending: true });
+
+            if (error) {
+                console.error('Ошибка при загрузке товаров:', error);
+            } else {
+                setProducts(data || []);
+            }
+            setLoading(false);
+        }
+
+        fetchProducts();
+    }, []);
+
+    if (loading) return <div>Загрузка товаров из базы...</div>;
+
+    return (
+        <div>
+            <Text size={25}>Галерея товаров</Text>
+            
+            {products.length === 0 && <Text>Товары не найдены</Text>}
+
+            {/* Перебираем массив товаров из базы */}
+            {products.map((product) => (
+                <List listStyle="none" key={product.id}>
+                    <Photo src={product.photo_url} />
+                    <Text><strong>{product.name}</strong></Text>
+                    <Text>{product.price} ₽</Text>
+                </List>
+            ))}
+        </div>
+    );
+}
+
+export default GaleriPage;

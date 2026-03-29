@@ -31,7 +31,7 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
     aspect-ratio: 1 / 1; /*сделал их квадратными*/
     display: flex;
-  
+    width: 100%;
 }
 
 /* Эффект при наведении */

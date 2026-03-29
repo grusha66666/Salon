@@ -11,8 +11,8 @@ function MainPage () {
     const [currentPage, setCurrentPage] = useState(0);
 
     const pages: ReactNode[] = [
-        <ReviewsPage ReviewsPageActionBack={() => setCurrentPage(1)}/>,
-        <DoReviewPage DoReviewsPageActionBack={() => setCurrentPage(0)}/>
+        <ReviewsPage onAddReviewClick={() => setCurrentPage(1)}/>,
+        <DoReviewPage onBack={() => setCurrentPage(0)}/>
     ];
     return(
         <div>
