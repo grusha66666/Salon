@@ -1,5 +1,4 @@
 import {ReactNode} from "react";
-import css from "./../styles/Panel.module.css"
 
 interface IPanelProps{
     children?: ReactNode;
@@ -8,7 +7,7 @@ interface IPanelProps{
 
 function Panel(props: IPanelProps){
     return(
-        <div className={css.panel}>
+        <div>
          
             {props.children}
         </div>
