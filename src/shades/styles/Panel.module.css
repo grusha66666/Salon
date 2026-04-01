@@ -1,0 +1,106 @@
+.center {
+    display: flex;
+    justify-content: center; /* Центрирует карточку по горизонтали */
+    align-items: center;     /* Центрирует карточку по вертикали */
+    min-height: 80vh;        /* Занимает почти всю высоту экрана */
+    width: 100%;
+}
+
+.loginCard {
+    display: flex;
+    flex-direction: column;  /* Элементы внутри встают в колонку */
+    align-items: center;     /* Центрирует всё содержимое карточки */
+    gap: 20px;               /* Одинаковые отступы между всеми элементами */
+    background: white;       /* Цвет карточки */
+    padding: 40px;           /* Внутренние отступы */
+    border-radius: 15px;     /* Скругление углов */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Тень, как на твоем первом фото */
+    width: 100%;
+    max-width: 400px;        /* Чтобы форма не была слишком широкой */
+}
+
+.inputGroup {
+    width: 100%;             /* Чтобы инпуты растягивались на всю ширину карточки */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Подписи "Введите Email" будут слева над инпутом */
+    gap: 5px;
+}
+
+.title2 {
+    color: #c96773;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+.title {
+    color: #c96773;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Контейнер для центрирования всей формы на странице */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    width: 100%;
+}
+
+/* Белая карточка */
+.loginCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Отступы между всеми элементами внутри */
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* СТИЛЬ ДЛЯ ИНПУТОВ (Делаем их большими) */
+.loginCard input {
+    width: 100%;
+    /* 15px сверху и снизу, 20px по бокам — это сделает их высокими */
+    padding: 15px 20px; 
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    background-color: #fdf8f9; /* Светло-розовый фон как на макете */
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box; /* Чтобы padding не раздувал ширину */
+    transition: border-color 0.3s;
+}
+
+.loginCard input:focus {
+    border-color: #c96773; /* Цвет рамки при нажатии */
+}
+
+.loginCard button {
+    width: 100%;             /* Растягивает кнопку на всю ширину карточки */
+    box-sizing: border-box;  /* Чтобы внутренние отступы не распирали кнопку */
+    padding: 14px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #c96773; /* Цвет как на макете */
+    color: white;              /* Цвет текста */
+    display: block;            /* Делает кнопку блочным элементом */
+}
+
+.buttonGroup {
+    width: 100%;             /* Контейнер кнопок на всю ширину */
+    display: flex;
+    flex-direction: column;  /* Кнопки друг под другом */
+    align-items: center;     /* Центрируем их */
+    gap: 10px;               /* Расстояние между кнопками */
+    margin-top: 20px;
+}

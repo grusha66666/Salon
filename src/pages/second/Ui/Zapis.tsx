@@ -5,15 +5,15 @@ import List from "../../../shades/UI/List";
 import Input from "../../../shades/UI/Input";
 import Select from "../../../shades/UI/Select";
 import Button from "../../../shades/UI/Button";
-
+import { useNavigate } from 'react-router-dom';
 
 interface IZapisPageProps {
     ZapisPageActionBack?: () => void;
 }
 
-function ZapisPage({ZapisPageActionBack}:IZapisPageProps ){
+function ZapisPage({ ZapisPageActionBack }: IZapisPageProps) {
 
-    
+    const navigate = useNavigate();
     const [masters, setMasters] = useState<any[]>([]);
     const [services, setServices] = useState<any[]>([]);
     const [userProfile, setUserProfile] = useState<{ full_name: string, email: string } | null>(null);
@@ -118,7 +118,9 @@ function ZapisPage({ZapisPageActionBack}:IZapisPageProps ){
                 />
 
                 <Button clickAction={handleBooking}>Подтвердить запись</Button>
-                <Button clickAction={ZapisPageActionBack}>Посмотреть мои записи</Button>
+                <Button clickAction={() => navigate('/appointments')}>
+                    Посмотреть мои записи
+                </Button>
             </List>
         </div>
     );

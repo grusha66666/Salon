@@ -11,48 +11,60 @@ import SingInPage from "./pages/second/Ui/SingIn";
 import SingUpPage from "./pages/second/Ui/SingUp";
 import MyAppointments from "./pages/second/Ui/MyAppointments";
 import AdminPanel from "./pages/admin/AdminPanel"; 
+import { useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState(0);
-
-  const pages: ReactNode[] = [
-    <MainPage />,         // 0
-    <MastersMainPage />,  // 1
-    <UslugiPage />,       // 2
-    <GaleriPage />,       // 3
-    <ZapisPage ZapisPageActionBack={() => setCurrentPage(7)} />, // 4
-    <SingInPage SingInPageActionUp={() => setCurrentPage(0)} SingInPageActionDown={() => setCurrentPage(6)} />, // 5
-    <SingUpPage SingUpPageActionUp={() => setCurrentPage(0)} SingUpPageActionDown={() => setCurrentPage(5)} />, // 6
-    <MyAppointments />,   // 7
-    <AdminPanel onBack={() => setCurrentPage(0)} /> // 8 - НОВАЯ СТРАНИЦА
-  ];
-
   return (
-    <div>
-       {/* Секретная зона в левом нижнем углу для входа в админку */}
-       <div 
-         onClick={() => setCurrentPage(8)} 
-         style={{ 
-           position: 'fixed', bottom: 0, left: 0, 
-           width: '40px', height: '40px', 
-           zIndex: 9999, cursor: 'pointer' 
-         }} 
-       />
+    <Router>
+      <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        
+        {/* Шапка теперь всегда сверху, на любой странице */}
+        <HeaderWrapper />
 
-       <HeaderPage 
-         MainPageActionBack={() => setCurrentPage(0)}
-         MainPageActionMaster={() => setCurrentPage(1)}
-         MainPageActionDo={() => setCurrentPage(2)}
-         MainPageActionGaleri={() => setCurrentPage(3)}
-         MainPageActionZapis={() => setCurrentPage(4)}
-         MainPageActionProfil={() => setCurrentPage(5)}
-       />
-       
-       <div>{pages[currentPage]}</div>
-       
-       <FuterPage />
-    </div>
+        <main style={{ flex: 1 }}>
+          <Routes>
+            {/* Основные маршруты */}
+            <Route path="/" element={<MainPage />} />
+            <Route path="/masters" element={<MastersMainPage />} />
+            <Route path="/services" element={<UslugiPage />} />
+            <Route path="/gallery" element={<GaleriPage />} />
+            <Route path="/booking" element={<ZapisPage />} />
+            
+            {/* Авторизация и профиль */}
+            <Route path="/signin" element={<SingInPage />} />
+            <Route path="/signup" element={<SingUpPage />} />
+            <Route path="/appointments" element={<MyAppointments />} />
+
+            {/* АДМИНКА: Доступна только по прямой ссылке /admin */}
+            <Route path="/admin" element={<AdminPanel onBack={() => window.history.back()} />} />
+
+            {/* (Опционально) 404 страница, если ввели несуществующий путь */}
+            <Route path="*" element={<div>Страница не найдена</div>} />
+          </Routes>
+        </main>
+
+        <FuterPage />
+      </div>
+    </Router>
   );
 }
+
+
+
+const HeaderWrapper = () => {
+  const navigate = useNavigate();
+
+  return (
+    <HeaderPage 
+      MainPageActionBack={() => navigate('/')}
+      MainPageActionMaster={() => navigate('/masters')}
+      MainPageActionDo={() => navigate('/services')}
+      MainPageActionGaleri={() => navigate('/gallery')}
+      MainPageActionZapis={() => navigate('/booking')}
+      MainPageActionProfil={() => navigate('/signin')} 
+    />
+  );
+};
 
 export default App;
