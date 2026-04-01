@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "../../../utils/supabase";
 import Text from "../../../shades/UI/Text";
 import List from "../../../shades/UI/List";
+import Text2 from "../../../shades/UI/Text2";
 interface Service {
   id: string;
   name: string;
@@ -30,14 +31,13 @@ function UslugiPage() {
   return (
     <div>
       <Text>Наши Услуги</Text>
-      <List>
         {services.map((service) => (
-          <List key={service.id}>
+          <div key={service.id} style={{ display: 'flex', gap: '5px', alignItems: 'center', flexWrap: 'wrap', margin: "40px"}}>
             <Text>{service.name}</Text>
-            <Text>{service.price} ₽</Text>
-          </List>
+            <div  style={{ display: 'flex', alignItems: 'center', gap: '5px', marginLeft: 'auto' }}>
+            <Text2>{service.price} ₽</Text2></div>
+          </div>
         ))}
-      </List>
     </div>
   );
 }
