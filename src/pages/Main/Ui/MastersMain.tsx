@@ -6,6 +6,7 @@ import Photo2 from "../../../shades/UI/Photo2";
 import List from "../../../shades/UI/List";
 import css from "../../../shades/styles/Photo.module.css";
 
+
 // Описываем, как выглядит мастер
 interface Master {
   id: string;

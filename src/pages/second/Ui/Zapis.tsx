@@ -1,35 +1,37 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../../utils/supabase";
 import Text from "../../../shades/UI/Text";
-import List from "../../../shades/UI/List";
-import Input from "../../../shades/UI/Input";
 import Select from "../../../shades/UI/Select";
 import Button from "../../../shades/UI/Button";
 import { useNavigate } from 'react-router-dom';
+import css from "../../second/styles/Zapis.module.css";
 
 interface IZapisPageProps {
     ZapisPageActionBack?: () => void;
 }
 
 function ZapisPage({ ZapisPageActionBack }: IZapisPageProps) {
-
     const navigate = useNavigate();
     const [masters, setMasters] = useState<any[]>([]);
     const [services, setServices] = useState<any[]>([]);
     const [userProfile, setUserProfile] = useState<{ full_name: string, email: string } | null>(null);
 
-    // Данные формы
     const [selectedMaster, setSelectedMaster] = useState("");
     const [selectedService, setSelectedService] = useState("");
     const [time, setTime] = useState("");
 
+    const timeSlots = [
+        "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", 
+        "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", 
+        "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", 
+        "18:00", "18:30", "19:00", "19:30"
+    ];
+
     useEffect(() => {
         const fetchData = async () => {
-            // 1. Берем текущего юзера
             const { data: { user } } = await supabase.auth.getUser();
 
             if (user) {
-                // 2. Достаем имя и почту из профиля
                 const { data: profile } = await supabase
                     .from('profiles')
                     .select('full_name, email')
@@ -38,11 +40,9 @@ function ZapisPage({ ZapisPageActionBack }: IZapisPageProps) {
                 setUserProfile(profile);
             }
 
-            // 3. Грузим мастеров
             const { data: mData } = await supabase.from('masters').select('id, full_name');
             setMasters(mData || []);
 
-            // 4. Грузим услуги
             const { data: sData } = await supabase.from('services').select('id, name, price');
             setServices(sData || []);
         };
@@ -71,12 +71,10 @@ function ZapisPage({ ZapisPageActionBack }: IZapisPageProps) {
             alert("Ошибка: " + error.message);
         } else {
             alert("Вы успешно записаны!");
-            // Сброс поля времени после успеха
             setTime("");
         }
     };
 
-    // Подготовка данных для твоего компонента Select
     const mastersOptions = [
         { text: "Выберите мастера", value: "" },
         ...masters.map(m => ({ text: m.full_name, value: m.id }))
@@ -87,41 +85,52 @@ function ZapisPage({ ZapisPageActionBack }: IZapisPageProps) {
         ...services.map(s => ({ text: `${s.name} (${s.price} ₽)`, value: s.id }))
     ];
 
+    const timeOptions = [
+        { text: "Выберите удобное время", value: "" },
+        ...timeSlots.map(t => ({ text: t, value: t }))
+    ];
+
     return (
-        <div>
-            <Text size={25}>Запись на прием</Text>
-            <List>
-                <div style={{ margin: "10px 0", borderBottom: "1px solid #eee", paddingBottom: "10px" }}>
+        <div className={css.center}>
+            <div className={css.loginCard}>
+
+                <Text size={25}>Запись на процедуру</Text>
+
+                <div className={css.inputGroup}>
                     <p><strong>Клиент:</strong> {userProfile?.full_name || "Загрузка..."}</p>
                     <p><strong>Email:</strong> {userProfile?.email || "..."}</p>
                 </div>
 
-                <Text>Выберите мастера:</Text>
-                <Select
-                    Arroptios={mastersOptions}
-                    // Меняем onChange на changeAction, чтобы компонент "услышал" функцию
-                    changeAction={(val: string) => setSelectedMaster(val)}
-                />
+                <div className={css.inputGroup}>
+                    <Text>Выберите мастера:</Text>
+                    <Select
+                        Arroptios={mastersOptions}
+                        changeAction={(val: string) => setSelectedMaster(val)}
+                    />
+                </div>
 
-                <Text>Выберите услугу:</Text>
-                <Select
-                    Arroptios={servicesOptions}
-                    // Здесь делаем то же самое
-                    changeAction={(val: string) => setSelectedService(val)}
-                />
+                <div className={css.inputGroup}>
+                    <Text>Выберите услугу:</Text>
+                    <Select
+                        Arroptios={servicesOptions}
+                        changeAction={(val: string) => setSelectedService(val)}
+                    />
+                </div>
 
-                <p>Желаемое время:</p>
-                <Input
-                    placholder="Например, 14:30"
-                    value={time}
-                    changeAction={(v: string) => setTime(v)}
-                />
+                <div className={css.inputGroup}>
+                    <Text>Желаемое время:</Text>
+                    <Select
+                        Arroptios={timeOptions}
+                        changeAction={(val: string) => setTime(val)}
+                    />
+                </div>
 
                 <Button clickAction={handleBooking}>Подтвердить запись</Button>
+
                 <Button clickAction={() => navigate('/appointments')}>
                     Посмотреть мои записи
                 </Button>
-            </List>
+            </div>
         </div>
     );
 }

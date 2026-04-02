@@ -1,6 +1,6 @@
 .text {
     /* Стили для обычного текст*/
-    color: #636363;
+    color: #000000;
     font-family: 'Inter', sans-serif; 
     margin: 10px 0;
     line-height: 1.4;
@@ -27,5 +27,8 @@
 .text2 {
     text-align: center;
     color: #f85c65;
-    
+}
+.text3 {
+    text-align: center;
+    color: #ffe1e1;
 }

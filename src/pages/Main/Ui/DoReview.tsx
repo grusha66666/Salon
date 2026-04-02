@@ -4,6 +4,7 @@ import Text from "../../../shades/UI/Text";
 import Input from "../../../shades/UI/Input";
 import Button from "../../../shades/UI/Button";
 import List from "../../../shades/UI/List";
+import css from "../../../shades/styles/Panel.module.css";
 
 function AddReviewPage({ onBack }: { onBack: () => void }) {
     const [rating, setRating] = useState("");
@@ -20,10 +21,10 @@ function AddReviewPage({ onBack }: { onBack: () => void }) {
         const { error } = await supabase
             .from('reviews')
             .insert([
-                { 
-                    user_id: user.id, 
-                    rating: parseInt(rating), 
-                    comment: comment 
+                {
+                    user_id: user.id,
+                    rating: parseInt(rating),
+                    comment: comment
                 }
             ]);
 
@@ -36,26 +37,24 @@ function AddReviewPage({ onBack }: { onBack: () => void }) {
     };
 
     return (
-        <div>
-            <Text size={25}>Оставить отзыв</Text>
-            <List>
+        <div className={css.center}>
+            <div className={css.loginCard}>
+                <Text size={25}>Оставить отзыв</Text>
                 <Text>Ваша оценка (1-5):</Text>
-                <Input 
-                    placholder="5" 
-                    value={rating} 
-                    changeAction={(val: string) => setRating(val)} 
+                <Input
+                    placholder="5"
+                    value={rating}
+                    changeAction={(val: string) => setRating(val)}
                 />
-                
                 <Text>Ваш комментарий:</Text>
-                <Input 
-                    placholder="Напишите здесь..." 
-                    value={comment} 
-                    changeAction={(val: string) => setComment(val)} 
+                <Input
+                    placholder="Напишите здесь..."
+                    value={comment}
+                    changeAction={(val: string) => setComment(val)}
                 />
-                
                 <Button clickAction={handleSubmit}>Отправить</Button>
                 <Button clickAction={onBack}>Назад</Button>
-            </List>
+            </div>
         </div>
     );
 }

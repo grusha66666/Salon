@@ -16,3 +16,12 @@
   font-size: 21px;
   color: white;
 }
+
+.button3{
+  background-color: palevioletred;
+  border: solid 9px palevioletred;
+  border-radius: 6px;
+  margin: 20px;
+  font-size: 21px;
+  color: white;
+}

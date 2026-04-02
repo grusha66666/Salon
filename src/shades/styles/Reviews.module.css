@@ -1,14 +1,39 @@
 .reviews {
     display: grid;
-    /* Создал 3 колонки равной ширины */
-    grid-template-columns: repeat(3, 1fr); 
-    /* Расстояние между фото */
-    gap: 20px; 
-    /* Чтобы галерея занимала всю доступную ширину */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
     width: 100%;
-    max-width: 1200px; 
-    margin: 0 auto; /* Центрирую сетку на странице */
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-  
 }
 
+.buttonWrapper {
+    display: flex;
+    justify-content: flex-end; /* Прижимает кнопку к правому краю */
+    margin-bottom: 20px;       /* Отступ от кнопки до карточек */
+    /* Если хочешь, чтобы кнопка была чуть левее края (ровно над центром 3-й карточки), 
+       можно добавить padding-right или ограничить ширину: */
+    width: 100%; 
+}
+
+.headerRow {
+    display: flex;
+    justify-content: space-between; /* Текст слева, кнопка справа */
+    align-items: center;           /* Центрируем их по вертикали */
+    margin-bottom: 30px;           /* Отступ до самих отзывов */
+    width: 100%;                   /* Чтобы строка растянулась на всю ширину */
+    max-width: 1200px;             /* Если у тебя есть ограничение по ширине контента */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Стили для карточки (чтобы выглядели как на скрине) */
+.reviewCard {
+    background-color: #d27981;    /* Тот самый розовый цвет */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
