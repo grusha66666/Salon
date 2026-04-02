@@ -1,0 +1,17 @@
+ .galeri {
+     display: grid;
+    /* Создает 4 колонки равной ширины */
+    grid-template-columns: repeat(3, 1fr); 
+    /* Расстояние между фото */
+    gap: 20px; 
+    /* Чтобы галерея занимала всю доступную ширину */
+    width: 100%;
+ }
+
+.photos {
+    width: 255px;
+    display: block;
+    aspect-ratio: 1 / 1; /*фото квадратное*/
+    object-fit: cover;   /*Чтобы фотка не искажалось при заполнении квадрата*/
+    border-radius: 15px; /*Скруглить уголочки!*/
+}

@@ -1,0 +1,14 @@
+.do {
+    display: flex; 
+    gap: 5px;
+    alignItems: center;
+    flexWrap: wrap;
+    margin: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-shadow: 
+        1px 1px 0px rgba(0, 0, 0, 0.05),
+        2px 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: rgb(241, 239, 239);
+        border-radius: 6px;
+}
