@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import css from "./../styles/Input.module.css";
+
 
 interface IInputProps {
   placholder?: string;
@@ -23,7 +23,6 @@ function Input({
 
   return (
     <input
-      className={css.input}
       type={type}
       placeholder={placholder}
       value={inputValue}

@@ -6,6 +6,7 @@ import Input from "../../../shades/UI/Input";
 import Select from "../../../shades/UI/Select";
 import Button from "../../../shades/UI/Button";
 import { useNavigate } from 'react-router-dom';
+import css from "../../second/styles/Zapis.module.css";
 
 interface IZapisPageProps {
     ZapisPageActionBack?: () => void;
@@ -87,43 +88,60 @@ function ZapisPage({ ZapisPageActionBack }: IZapisPageProps) {
         ...services.map(s => ({ text: `${s.name} (${s.price} ₽)`, value: s.id }))
     ];
 
-    return (
-        <div>
-            <Text size={25}>Запись на прием</Text>
-            <List>
-                <div style={{ margin: "10px 0", borderBottom: "1px solid #eee", paddingBottom: "10px" }}>
-                    <p><strong>Клиент:</strong> {userProfile?.full_name || "Загрузка..."}</p>
-                    <p><strong>Email:</strong> {userProfile?.email || "..."}</p>
-                </div>
+return (
+    /* Класс .center из твоего CSS центрирует карточку по вертикали и горизонтали */
+    <div className={css.center}>
+        <div className={css.loginCard}>
+            
+            {/* Заголовок */}
+            <Text size={25}>Запись на процедуру</Text>
 
+            {/* Информация о клиенте (Email) */}
+            <div className={css.inputGroup}>
+                <p><strong>Клиент:</strong> {userProfile?.full_name || "Загрузка..."}</p>
+                <p><strong>Email:</strong> {userProfile?.email || "..."}</p>
+            </div>
+
+            {/* Выбор мастера */}
+            <div className={css.inputGroup}>
                 <Text>Выберите мастера:</Text>
-                <Select
-                    Arroptios={mastersOptions}
-                    // Меняем onChange на changeAction, чтобы компонент "услышал" функцию
+                <Select 
+                    Arroptios={mastersOptions} 
                     changeAction={(val: string) => setSelectedMaster(val)}
                 />
+            </div>
 
+            {/* Выбор услуги */}
+            <div className={css.inputGroup}>
                 <Text>Выберите услугу:</Text>
-                <Select
-                    Arroptios={servicesOptions}
-                    // Здесь делаем то же самое
+                <Select 
+                    Arroptios={servicesOptions} 
                     changeAction={(val: string) => setSelectedService(val)}
                 />
+            </div>
 
-                <p>Желаемое время:</p>
-                <Input
+            {/* Поле времени */}
+            <div className={css.inputGroup}>
+                <p className={css.title}>Желаемое время:</p>
+                <Input 
                     placholder="Например, 14:30"
                     value={time}
                     changeAction={(v: string) => setTime(v)}
                 />
+            </div>
 
+            {/* Группа кнопок */}
+            <div className={css.buttonGroup}>
                 <Button clickAction={handleBooking}>Подтвердить запись</Button>
+                
                 <Button clickAction={() => navigate('/appointments')}>
                     Посмотреть мои записи
                 </Button>
-            </List>
+            </div>
+
         </div>
-    );
+    </div>
+);
 }
 
 export default ZapisPage;

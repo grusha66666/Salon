@@ -1,11 +1,3 @@
-.center {
-    display: flex;
-    justify-content: center; /* Центрирует карточку по горизонтали */
-    align-items: center;     /* Центрирует карточку по вертикали */
-    min-height: 80vh;        /* Занимает почти всю высоту экрана */
-    width: 100%;
-}
-
 .loginCard {
     display: flex;
     flex-direction: column;  /* Элементы внутри встают в колонку */

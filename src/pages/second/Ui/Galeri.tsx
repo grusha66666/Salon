@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../../utils/supabase";
 import Text from "../../../shades/UI/Text";
+import Text2 from "../../../shades/UI/Text2";
 import Photo from "../../../shades/UI/Photo";
+// import css from "../../second/styles/Galeri.module.css"
 import List from "../../../shades/UI/List";
-
+import css from "../../../shades/styles/Photo.module.css";
+import Photo3 from "../../../shades/UI/Photo3";
+import styles from "../../../shades/styles/Reviews.module.css";
 interface Product {
     id: string;
     name: string;
@@ -37,18 +41,17 @@ function GaleriPage() {
 
     return (
         <div>
-            <Text size={25}>Галерея товаров</Text>
-            
-            {products.length === 0 && <Text>Товары не найдены</Text>}
-
-            {/* Перебираем массив товаров из базы */}
+        <Text size={25}>Галерея товаров</Text>
+        {products.length === 0 && <Text>Товары не найдены</Text>}
+        <div className={styles.reviews}>
             {products.map((product) => (
-                <List listStyle="none" key={product.id}>
-                    <Photo src={product.photo_url} />
+                <List key={product.id}>
+                        <Photo3 src={product.photo_url} />
                     <Text><strong>{product.name}</strong></Text>
-                    <Text>{product.price} ₽</Text>
+                    <Text size={16}>{product.price} ₽</Text>
                 </List>
             ))}
+        </div>
         </div>
     );
 }

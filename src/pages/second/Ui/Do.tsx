@@ -3,6 +3,8 @@ import { supabase } from "../../../utils/supabase";
 import Text from "../../../shades/UI/Text";
 import List from "../../../shades/UI/List";
 import Text2 from "../../../shades/UI/Text2";
+import css from "../../second/styles/Do.module.css"
+
 interface Service {
   id: string;
   name: string;
@@ -32,7 +34,7 @@ function UslugiPage() {
     <div>
       <Text>Наши Услуги</Text>
         {services.map((service) => (
-          <div key={service.id} style={{ display: 'flex', gap: '5px', alignItems: 'center', flexWrap: 'wrap', margin: "40px"}}>
+          <div  className = {css.do} key={service.id}>
             <Text>{service.name}</Text>
             <div  style={{ display: 'flex', alignItems: 'center', gap: '5px', marginLeft: 'auto' }}>
             <Text2>{service.price} ₽</Text2></div>
