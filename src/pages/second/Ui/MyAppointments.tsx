@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { supabase } from "../../../utils/supabase";
 import Text from "../../../shades/UI/Text";
-import List from "../../../shades/UI/List";
+import styles from "../../second/styles/Myappointments.module.css"; // Импорт стилей
 
 function MyAppointments() {
   const [appointments, setAppointments] = useState<any[]>([]);
@@ -9,23 +9,27 @@ function MyAppointments() {
 
   useEffect(() => {
     const fetchAppointments = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+      // Получаем текущего пользователя (исправил логику user_id)
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
 
       if (user) {
-        // Запрос со сложной выборкой (JOIN)
         const { data, error } = await supabase
-          .from('appointments')
-          .select(`
-            id,
-            appointment_time,
-            masters (full_name),
-            services (name, price)
-          `)
-          .eq('user_id', user.id)
-          .order('created_at', { ascending: false });
+          .from("appointments")
+          .select(
+            `
+                        id,
+                        appointment_time,
+                        masters (full_name),
+                        services (name, price)
+                    `,
+          )
+          .eq("user_id", user.id)
+          .order("created_at", { ascending: false });
 
         if (error) {
-          console.error("Ошибка при получении записей:", error);
+          console.error("Ошибка:", error);
         } else {
           setAppointments(data || []);
         }
@@ -36,30 +40,47 @@ function MyAppointments() {
     fetchAppointments();
   }, []);
 
-  if (loading) return <Text>Загрузка ваших записей...</Text>;
+  if (loading)
+    return (
+      <div className={styles.noData}>
+        <Text>Загрузка ваших записей...</Text>
+      </div>
+    );
 
   return (
-    <div>
-      <Text size={25}>Мои записи</Text>
-      <List>
-        {appointments.length > 0 ? (
-          appointments.map((apt) => (
-            <div key={apt.id} style={{ 
-              border: "1px solid #ccc", 
-              padding: "15px", 
-              marginBottom: "10px", 
-              borderRadius: "8px" 
-            }}>
-              <Text><strong>Процедура:</strong> {apt.services?.name}</Text>
-              <Text><strong>Мастер:</strong> {apt.masters?.full_name}</Text>
-              <Text><strong>Время:</strong> {apt.appointment_time}</Text>
-              <Text><strong>Цена:</strong> {apt.services?.price} ₽</Text>
+    <div className={styles.container}>
+      <div className={styles.title}>
+        <Text size={32}>Мои записи</Text>
+      </div>
+
+      {appointments.length > 0 ? (
+        <div className={styles.appointmentsList}>
+          {appointments.map((apt) => (
+            <div key={apt.id} className={styles.appointmentCard}>
+              <div className={styles.item}>
+                <span className={styles.label}>Процедура:</span>
+                <span className={styles.value}>{apt.services?.name}</span>
+              </div>
+              <div className={styles.item}>
+                <span className={styles.label}>Мастер:</span>
+                <span className={styles.value}>{apt.masters?.full_name}</span>
+              </div>
+              <div className={styles.item}>
+                <span className={styles.label}>Время:</span>
+                <span className={styles.value}>{apt.appointment_time}</span>
+              </div>
+              <div className={styles.item}>
+                <span className={styles.label}>Цена:</span>
+                <span className={styles.value}>{apt.services?.price} ₽</span>
+              </div>
             </div>
-          ))
-        ) : (
+          ))}
+        </div>
+      ) : (
+        <div className={styles.noData}>
           <Text>У вас пока нет активных записей.</Text>
-        )}
-      </List>
+        </div>
+      )}
     </div>
   );
 }

@@ -43,7 +43,7 @@ function GaleriPage() {
         <div>
         <Text size={25}>Галерея товаров</Text>
         {products.length === 0 && <Text>Товары не найдены</Text>}
-        <div className={styles.reviews}>
+        <div className={styles.galery}>
             {products.map((product) => (
                 <List key={product.id}>
                         <Photo3 src={product.photo_url} />

@@ -1,0 +1,69 @@
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 40px;
+    background-color: #fff5f6; /* Светло-розовый фон всей секции */
+    border-radius: 30px;
+    min-height: 80vh;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.appointmentsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    justify-items: center;
+}
+
+.appointmentCard {
+    background-color: #ffffff; /* Белая карточка */
+    padding: 25px;
+    border-radius: 20px;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(209, 121, 129, 0.1); /* Мягкая розовая тень */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(209, 121, 129, 0.1);
+}
+
+.appointmentCard:hover {
+    transform: translateY(-5px);
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 8px;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.label {
+    font-weight: 600;
+    color: #d27981; /* Акцентный розовый для заголовков */
+    font-size: 0.9rem;
+}
+
+.value {
+    color: #4a4a4a;
+    font-size: 1rem;
+    text-align: right;
+}
+
+.noData {
+    text-align: center;
+    padding: 50px;
+    color: #888;
+}

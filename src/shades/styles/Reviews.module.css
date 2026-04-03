@@ -1,39 +1,67 @@
-.reviews {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+.container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-}
-
-.buttonWrapper {
-    display: flex;
-    justify-content: flex-end; /* Прижимает кнопку к правому краю */
-    margin-bottom: 20px;       /* Отступ от кнопки до карточек */
-    /* Если хочешь, чтобы кнопка была чуть левее края (ровно над центром 3-й карточки), 
-       можно добавить padding-right или ограничить ширину: */
-    width: 100%; 
+    padding: 40px 20px;
+    background-color: #fff5f6; /* Тот самый нежно-розовый фон страницы */
+    border-radius: 20px;
 }
 
 .headerRow {
     display: flex;
-    justify-content: space-between; /* Текст слева, кнопка справа */
-    align-items: center;           /* Центрируем их по вертикали */
-    margin-bottom: 30px;           /* Отступ до самих отзывов */
-    width: 100%;                   /* Чтобы строка растянулась на всю ширину */
-    max-width: 1200px;             /* Если у тебя есть ограничение по ширине контента */
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
 }
 
+.reviews {
+    display: grid;
+    /* minmax(0, 1fr) гарантирует, что колонка не растянется шире сетки из-за длинного текста */
+    grid-template-columns: repeat(3, minmax(0, 1fr)); 
+    gap: 25px;
+}
 
-/* Стили для карточки (чтобы выглядели как на скрине) */
 .reviewCard {
-    background-color: #d27981;    /* Тот самый розовый цвет */
-    color: white;
+    background-color: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04); /* Мягкая тень как на образце */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+    height: 100%; /* Чтобы все карточки были одной высоты в ряду */
+}
+
+.stars {
+    color: #d27981; /* Розовый цвет звезд */
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.comment {
+    color: #4a4a4a;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    /* ФИКС ДЛЯ ДЛИННЫХ СЛОВ */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all; 
+}
+
+.author {
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: auto; /* Прижимает имя автора к самому низу карточки */
+}
+
+.galery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto;
     padding: 20px;
-    border-radius: 10px;
-    text-align: center;
 }
