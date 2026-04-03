@@ -10,10 +10,10 @@ function ActualHairstylePage () {
     return(
         <><Text2 size={25}>Актуальные прически 2026</Text2>
             <div className={css.gallery}>
-                <List listStyle="none"><Photo2 src="/images/Kach.jpg"/><Text>Каскадная стрижка 2026</Text><Text>Самая популярныя стрижка сезона</Text></List>
-                <List listStyle="none"><Photo2 src="/images/Kach.jpg"/><Text>Натуральное окрашивание</Text><Text>Актуальные оттенки 2026</Text></List>
-                <List listStyle="none"><Photo2 src="/images/Kach.jpg"/><Text>Текстурированный боб</Text><Text>Идеальная прическа для весны</Text></List>
-                <List listStyle="none"><Photo2 src="/images/Kach.jpg"/><Text>Профессиональный уход</Text><Text>Восстановаление и блеск</Text></List>
+                <List listStyle="none"><Photo2 src="/images/Koskad.jpg"/><Text>Каскадная стрижка 2026</Text><Text>Самая популярныя стрижка сезона</Text></List>
+                <List listStyle="none"><Photo2 src="/images/Okras.jpg"/><Text>Натуральное окрашивание</Text><Text>Актуальные оттенки 2026</Text></List>
+                <List listStyle="none"><Photo2 src="/images/bob2.jpg"/><Text>Текстурированный боб</Text><Text>Идеальная прическа для весны</Text></List>
+                <List listStyle="none"><Photo2 src="/images/misha.jpg"/><Text>Профессиональный уход</Text><Text>Восстановаление и блеск</Text></List>
             </div>
         </>
     )
